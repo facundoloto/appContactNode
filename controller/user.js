@@ -2,7 +2,7 @@ let Querys=require("../database/querys.js")
 require('dotenv').config()
 require('../controller/upload')
 const path=require('path')
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcryptjs')
 const { promisify } = require('util');
 const fs = require('fs');
 const readFile = promisify(fs.readFile);

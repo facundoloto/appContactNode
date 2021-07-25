@@ -1,6 +1,6 @@
 let Querys=require("../database/querys.js")
 require('dotenv').config()
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcryptjs')
 require('../controller/upload')
 const path=require('path')
 let nodemailer=require('nodemailer')
