@@ -18,6 +18,8 @@ const cors=require('cors')
 const port=process.env.HOST
 
 app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static('public'));
+app.use(express.static('files'));
 app.use(cookieParser());
 app.use(express.json())
 app.use(cors())
