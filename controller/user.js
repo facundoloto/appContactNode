@@ -124,7 +124,7 @@ exports.deleteUser=async(req,res)=>{
         if(req.body.url==="" || req.body.url===undefined){
         }
         else{
-        let url_img="./public/"+req.body.url
+        let url_img="./files/"+req.body.url
         fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
         console.log('File removed')
         }
