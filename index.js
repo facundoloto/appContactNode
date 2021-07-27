@@ -17,7 +17,7 @@ const recover=require('./controller/recover');
 const cors=require('cors')
 const port=process.env.HOST
 
-app.use('/files', express.static('files'))
+app.use('/img', express.static('img'))
 app.use(cookieParser());
 app.use(express.json())
 app.use(cors())
