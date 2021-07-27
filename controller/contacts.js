@@ -14,7 +14,7 @@ if(req.file==null){ //si el usuario no sube imagen seteamos la url como vacia
 url_profile=""    
 }
 else{
-url_profile=`/files/${req.file.filename}` //url de la carpeta donde esta alojada las imagenes y req.filename obtiene el nombre del archivos que se sube
+url_profile=`/img/${req.file.filename}` //url de la carpeta donde esta alojada las imagenes y req.filename obtiene el nombre del archivos que se sube
 }
 
 let email=req.body.email
@@ -57,19 +57,19 @@ res.send([{"estado":"200"}])
 else 
 {
 if(req.body.url===undefined || req.body.url===""){ //si en la url de la imagen no hay nadie siginifica que el usuario no tiene foto de perfil por ende no hay nada que borrar en el servidor
-let url=`/files/${req.file.filename}`
+let url=`/img/${req.file.filename}`
 console.log(url)
 await Querys.records(`UPDATE contactos SET nombre='${req.body.user}',email='${req.body.email}',numero='${req.body.number}',img_profile='${url}' where id='${req.params.id}'`)
 res.send([{"estado":"200"}])
 }
 else{
 //esto se ejecuta si ya hay una imagen en el contacto y quiere actualizar por otro,primero borramos la anterior del servidor y despues cargamos la ruta de la nueva imagen en la base de datos
-let url_img="./files/"+req.body.url
+let url_img="../img/"+req.body.url
 fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
 /*let url=`localhost:8080/files/${req.file.filename}`//url de la imagen 
 var URLdomain = window.location.host;*/
-let url=`/files/${req.file.filename}`
+let url=`/img/${req.file.filename}` //esto sirve para la ruta de la carpeta donde estan las img
 console.log(url)
 await Querys.records(`UPDATE contactos SET nombre='${req.body.user}',email='${req.body.email}',numero='${req.body.number}',img_profile='${url}' where id='${req.params.id}'`)
 res.send([{"estado":"200"}])
@@ -88,7 +88,7 @@ await Querys.records(`DELETE FROM contactos WHERE id='${req.params.id}'`)
 if(req.body.url==="" || req.body.url===undefined){
 }
 else{
-let url_img="./files/"+req.body.url
+let url_img="../img/"+req.body.url
 fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
 }
@@ -103,7 +103,7 @@ console.log(req.params.id)
 console.log(req.body.url)
 try{
 
-let url_img="./files/"+req.body.url
+let url_img="../img/"+req.body.url
 fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
 let url=""//guardamos la url en la base de datos para que este vacia y en el cliente verifique si hay una url si esta vacia como este caso que eliminamos la foto por defecto se agrega una imagen de perfil

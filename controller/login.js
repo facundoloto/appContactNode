@@ -31,7 +31,7 @@ if(user.length<=0){
 let nombre=req.body.user
 let url=""
 //este if evalua si hay un imagen que viene del cliente si no hay ninguna en la cosnulta se envia una url vacia
-if(req.file==null){url=""}else{url=`/files/${req.file.filename}`} //url de la carpeta donde esta alojada las imagenes y req.filename obtiene el nombre del archivos que se sube
+if(req.file==null){url=""}else{url=`/img/${req.file.filename}`} //url de la carpeta donde esta alojada las imagenes y req.filename obtiene el nombre del archivos que se sube
 let email=req.body.email
 let contraseña=req.body.password
 let rounds=10

@@ -43,14 +43,14 @@ if(req.body.url===""){
     console.log(req.body.url)
 }else
 {
-    let urlRemove="./files/"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
+    let urlRemove="../img/"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
     console.log(urlRemove)
     fs.unlinkSync(urlRemove)//url solo contiene la ruta antigua de la imagen para eliminarla
     console.log('File removed')
 }
 const user=await Querys.records(`select*from usuario where email='${req.body.email}'`)
 if(user.length<=0){ //Si no hay nada en user siginifica que el email no esta usado y se puede cambiar
-let url=URLdomain+`/files/${req.file.filename}`
+let url=`/img/${req.file.filename}`
 await Querys.records(`UPDATE usuario SET nombre="${req.body.user}",img_profile="${url}",email="${req.body.email}"  where id=${req.params.id}`)
 
 let mailOptions = {
@@ -71,7 +71,7 @@ await Querys.records(`UPDATE usuario SET nombre="${req.body.user}" where id=${re
 res.send( {"status":"203"}) 
 }else
 {
-let url=`/files/${req.file.filename}`
+let url=`/img/${req.file.filename}`
 await Querys.records(`UPDATE usuario SET nombre="${req.body.user}",img_profile="${url}" where id=${req.params.id}`)//si el email no se puede usar se actualiza los otros datos}
 res.send( {"status":"203"}) 
 }
@@ -83,7 +83,7 @@ exports.deleteProfile=async(req,res)=>{
 try{
 let user=await Querys.records(`UPDATE usuario SET img_profile="" where id="${req.params.id}" `)  
 console.log(user)
-let urlRemove="./files/"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
+let urlRemove="../img/"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
 console.log(urlRemove)
 fs.unlinkSync(urlRemove)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
@@ -124,7 +124,7 @@ exports.deleteUser=async(req,res)=>{
         if(req.body.url==="" || req.body.url===undefined){
         }
         else{
-        let url_img="./files/"+req.body.url
+        let url_img="../img/"+req.body.url
         fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
         console.log('File removed')
         }
