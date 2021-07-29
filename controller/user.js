@@ -43,7 +43,7 @@ if(req.body.url===""){
     console.log(req.body.url)
 }else
 {
-    let urlRemove="./public"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
+    let urlRemove="./public/"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
     console.log(urlRemove)
     fs.unlinkSync(urlRemove)//url solo contiene la ruta antigua de la imagen para eliminarla
     console.log('File removed')
@@ -83,7 +83,7 @@ exports.deleteProfile=async(req,res)=>{
 try{
 let user=await Querys.records(`UPDATE usuario SET img_profile="" where id="${req.params.id}" `)  
 console.log(user)
-let urlRemove="./public"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
+let urlRemove="./public/"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
 console.log(urlRemove)
 fs.unlinkSync(urlRemove)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
@@ -124,7 +124,7 @@ exports.deleteUser=async(req,res)=>{
         if(req.body.url==="" || req.body.url===undefined){
         }
         else{
-        let url_img="./public"+req.body.url
+        let url_img="./public/"+req.body.url
         fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
         console.log('File removed')
         }
