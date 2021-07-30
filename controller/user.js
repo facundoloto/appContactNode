@@ -39,14 +39,12 @@ exports.email=async(req,res)=>{
 exports.editUser=async(req,res)=>{
 try{
 //este if elimina imagen antigua y reemplaze por la nueva
-if(req.body.url===""){
-    console.log(req.body.url)
-}else
-{
-    let urlRemove="./public/"+req.body.url//estar atento a las rutas de las imagenes cuando se traiga la url de la imagen utilizar .slice(14) por ejemplo asi elimina los caracteres hasta obtener la ruta de la carpeta donde se colocan las imagenes
-    console.log(urlRemove)
-    fs.unlinkSync(urlRemove)//url solo contiene la ruta antigua de la imagen para eliminarla
-    console.log('File removed')
+if(req.body.url==="" || req.body.url===undefined){
+}
+else{
+let url_img="./public/"+req.body.url
+fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
+console.log('File removed')
 }
 const user=await Querys.records(`select*from usuario where email='${req.body.email}'`)
 if(user.length<=0){ //Si no hay nada en user siginifica que el email no esta usado y se puede cambiar
@@ -64,7 +62,7 @@ text: 'usted cambio el email de su cuenta en APPCONTACTS'
 transporter.sendMail(mailOptions, function(error, info){if(error){console.log(error)}else{console.log("Email sent")}});
 res.send({"status":"200"})
 }
-else{
+else{ //si el email no se puede cambiar se cambia el resto
 console.log(req.file)
 if(req.file===undefined){//si file(imagen) es undefined significa no hay foto para actualizar y solo actualizamos el nombre
 await Querys.records(`UPDATE usuario SET nombre="${req.body.user}" where id=${req.params.id}`) //si no hay foto para actualizar se actualiza otros datos

@@ -64,7 +64,7 @@ res.send([{"estado":"200"}])
 }
 else{
 //esto se ejecuta si ya hay una imagen en el contacto y quiere actualizar por otro,primero borramos la anterior del servidor y despues cargamos la ruta de la nueva imagen en la base de datos
-let url_img="./public"+req.body.url
+let url_img="./public/"+req.body.url
 fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
 /*let url=`localhost:8080/files/${req.file.filename}`//url de la imagen 
@@ -88,7 +88,7 @@ await Querys.records(`DELETE FROM contactos WHERE id='${req.params.id}'`)
 if(req.body.url==="" || req.body.url===undefined){
 }
 else{
-let url_img="./public"+req.body.url
+let url_img="./public/"+req.body.url
 fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
 }
@@ -103,7 +103,7 @@ console.log(req.params.id)
 console.log(req.body.url)
 try{
 
-let url_img="./public"+req.body.url
+let url_img="./public/"+req.body.url
 fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
 console.log('File removed')
 let url=""//guardamos la url en la base de datos para que este vacia y en el cliente verifique si hay una url si esta vacia como este caso que eliminamos la foto por defecto se agrega una imagen de perfil
