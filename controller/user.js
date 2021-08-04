@@ -126,7 +126,7 @@ exports.deleteUser=async(req,res)=>{
         fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
         console.log('File removed')
         }
-     await Querys.records(`DELETE FROM contactos WHERE usuario=${req.params.id}`)
+     await Querys.records(`DELETE FROM contactos WHERE usuario=${req.params.id}`)//primero eliminamos los campos de contactos relacionado a este usuario ya que sino no se eliminara el usuario por la relacion que tiene y segundo para limpiar la base de datos y hacerla mas liviano ya que son datos que no se van a volver a usar
     let user=await Querys.records(`DELETE FROM usuario WHERE id=${req.params.id}`)
     res.send(user)
     }
