@@ -126,6 +126,7 @@ exports.deleteUser=async(req,res)=>{
         fs.unlinkSync(url_img)//url solo contiene la ruta antigua de la imagen para eliminarla
         console.log('File removed')
         }
+     await Querys.records(`DELETE FROM contactos WHERE usuario=${req.params.id}`)
     let user=await Querys.records(`DELETE FROM usuario WHERE id=${req.params.id}`)
     res.send(user)
     }
