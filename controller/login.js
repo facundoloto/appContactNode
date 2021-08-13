@@ -48,7 +48,7 @@ let mailOptions = {
 from: 'Remitente',
 to:`${req.body.email}`,
 subject: 'Login',
-html : { path: "./email/index.html" }
+html : { path: "../email/index.html" }
 };
 transporter.sendMail(mailOptions, function(error, info){
 if (error){
