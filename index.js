@@ -21,7 +21,7 @@ app.use('/static', express.static('public')); //esto sirve para que el cliente p
 
 app.use(cookieParser());
 app.use(express.json())
-app.use(cors())
+//app.use(cors())
 // Configurar cabeceras y cors
 /*app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
